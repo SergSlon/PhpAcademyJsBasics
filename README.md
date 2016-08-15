@@ -1,7 +1,7 @@
 # [Стиль написания кода](https://github.com/airbnb/javascript/tree/es5-deprecated/es5 "Airbnb JavaScript Style Guide() {") - внимательно читаем !!!
 
 ## Отличия от представленного выше стандарта:
-- 4 пробела вместо 2-ух
+- 4 пробела, вместо 2-ух
 ```javascript
 //bad
 function () {
