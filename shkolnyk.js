@@ -1,4 +1,4 @@
-// First Task
+﻿// First Task
 var travelCalc = function(alreadyCompleted, distance, kmPerDay) {
     if (distance <= 0 || kmPerDay <= 0) {
         alert("Error");
