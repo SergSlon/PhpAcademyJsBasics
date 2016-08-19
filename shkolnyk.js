@@ -59,10 +59,9 @@ console.log(travelTimeText);
  * @param {Date} start             Start date
  * @param {Date} end               End Date
  * @param {Object} members         Event Members
- * @param {String} address         Event address
  *
  * @example
- *    Event("Party", new Date('2016-08-22T20:00:00'), new Date('2016-08-23T06:30:00'), ["Andrey", "Ivan", "Nasty"], "Shevchenko str 35 kv 48");
+ *    Event("Party", new Date('2016-08-22T20:00:00'), new Date('2016-08-23T06:30:00'), ["Andrey", "Ivan", "Nasty"]);
  *
  * @return {Object}
  */
