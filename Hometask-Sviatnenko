@@ -1,0 +1,64 @@
+function calcTime(A, B, C) {
+  return calcDate((B - A) / C)
+}
+
+var SECOND = 1
+var MINUTE = SECOND * 60
+var HOUR = MINUTE * 60
+var DAY = HOUR * 24
+
+function calcDate(N) {
+  var totalSeconds = N * DAY
+  function subsTime(x) {
+    var time = Math.floor(totalSeconds / x)
+    totalSeconds -= time * x
+    return time
+  }
+  var days = subsTime(DAY)
+  var hours = subsTime(HOUR)
+  var minutes = subsTime(MINUTE)
+  var seconds = subsTime(SECOND)
+  return 'we need ' +
+    days + ' days ' +
+    hours + ' hours ' +
+    minutes + ' minutes ' +
+    seconds + ' seconds to complite the trip'
+}
+console.log(calcTime(1, 15, 5))
+we need 2 days 19 hours 11 minutes 59 seconds to complite the trip
+
+==========================================================================
+/**
+ * Возвращает объект Event
+ *
+ * @param {Object} config                        Параметры события
+ * @param {Number|Date} config.start             Начало события
+ * @param {Number|Date} config.end               Конец события
+ * @param {String}      [config.name="Событие"]  Имя события
+ * @param {String}      config.description       Описание события
+ * @param {Number}      [config.rating=5]        Рейтинг события
+ *
+ * @example
+ *    Event({
+ *      start: new Date('2011-10-10T14:48:00'),
+ *      end: new Date('2011-10-10T15:48:00'),
+ *      name: "Совещание",
+ *      description: "Планирование тимбилдинга",
+ *      rating: 4
+ *    })
+ *
+ * @return {Object}
+ */
+
+function Event(config) {
+    if (!config.start || !config.end || !config.description) {
+        throw new TypeError('bad config')
+    }
+    return {
+        start: +config.start,
+        end: +config.end,
+        name: config.name || "Событие",
+        description: config.description,
+        rating: config.rating || 5
+    };
+}
