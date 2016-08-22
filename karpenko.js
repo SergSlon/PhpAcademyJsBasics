@@ -1,89 +1,94 @@
-/* Задание №1 */
+// Задание №1
 
 /**
  * This function counts how many days, hours and minutes left to complete the path.
- * @param {number, number, number} input any number
- * @returns {object} that has the properties of days, hours and minutes.
+ * @param totalPath is the total number of km that are left to the point of destination
+ * @param completedPath is the number of km of completed path (how many km a person has already gone)
+ * @param speed is a speed (km/h) of a person (either he walks or drives)
+ * @returns time this is the object which has the properties with days, hours and minutes values
  */
-
+ 
 function timeCounter(totalPath, completedPath, speed) {
 "use strict"
+var time = new Object;
 
-  if (completedPath > totalPath || totalPath == 0) { 
+if (completedPath > totalPath || totalPath == 0) { 
+    time.days = 0;
+    time.hours = 0;
+    time.minutes = 0;
+}
   
-      var time = {
-      days: 0,
-      hours: 0,
-      minutes: 0
-      };
-    
-	function output(time) {
-	    window.alert ("There are " + time.days + " days, " + time.hours + " hours, " + time.minutes + " minutes left.");
-	};
+else {
+    var remainingTime = ((Math.abs(totalPath) - Math.abs(completedPath))/speed);
+    time.days = Math.floor(remainingTime/24);
+	time.hours = Math.floor(remainingTime - time.days * 24);
+	time.minutes = Math.floor(((remainingTime - Math.floor(remainingTime)) * 60));
+}
     return time;
-  }
-  else {
-	  var remainingTime = ((Math.abs(totalPath) - Math.abs(completedPath))/speed);
-	  var remainingDays = Math.floor(remainingTime/24);
-	  var remainingHours = Math.floor(remainingTime - remainingDays * 24);
-	  var remainingMinutes = Math.floor(((remainingTime - Math.floor(remainingTime)) * 60));
-	  
-	  var time = {
-	      days: remainingDays,
-	      hours: remainingHours,
-	      minutes: remainingMinutes
-	  };
-	
-    function output(time) {
-        window.alert ("There are " + time.days + " days, " + time.hours + " hours, " + time.minutes + " minutes left.");
-    };
-    return time;
-  }
 };
+
+/**
+ * This function prints into the console how many days, hours and minutes are left to complete the path.
+ * @param time takes an object created with a constructor 
+ * @returns {object} that has the properties of days, hours and minutes.
+ */
+ 
+function output(time) {
+    console.log ("There are " + time.days + " days, " + time.hours + " hours, " + time.minutes + " minutes left.");
+    };
+output(timeCounter(1600, 600, 7));
 	    
 	
 
-/* Задание №2 */
+// Задание №2 
 
-var myEvent = {
-	name: "meeting",
-	beginTime: new Date("2016-09-05"),
-	endTime: new Date("2016-09-06"),
-	place: "Kiev",
-	rating: 8,
-	attendees: "Olga, Ivan, Petr"
+/**
+  * @constructor
+  * @param name The name of the event
+  * @param date The date of the event
+  * @param place The location where the event takes place
+  * @param attendees People that are present on the event
+  */
+  
+function Event (name, date, place, attendees) {
+    validate (name, date, place, attendees);
+	this.name = name;
+	this.date = new Date (date);
+	this.place = place;
+	this.attendees = attendees;
 };	
 
 /**
- * This function validates the input values.
- * @param {object} input an object of an event in the calendar with the following properties: name, time when it begins, time when it ends, place (city), rating and attendees.
- * @returns {boolean} that indicates if the input has passed validation: returns "true" if the input is valid, and returns "false" if the input is not valid.
- */
-	
-function validateEvent(myEvent) {
-    this.name = myEvent.name;
-    this.beginTime = myEvent.beginTime;
-	this.endTime = myEvent.beginTime;
-	this.place = myEvent.place;
-	this.rating = myEvent.rating;
-	this.attendees = myEvent.attendees;
-    var nameRegex = /^[a-zA-Z ]{2,30}$/;
-    var timeRegex = /^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$/;
-    var ratingRegex = /^([1-9]|10)$/;
-    if (nameRegex.test(name) && nameRegex.test(place)) {
-        if (timeRegex.test(beginTime) && timeRegex.test(endTime)){
-            if (ratingRegex.test(rating)){
-		        return true;
-            } else {
-                throw new Error ("Invalid rating!"); 
-                return false;
-            } 
-        } else {
-            throw new Error ("Invalid time!"); 
-            return false;
-        }
-    } else {
-        throw new Error ("Invalid name or place!"); 
-        return false;
-    }
+  * This is a validator which checks each input string for compliance with some rules
+  * @param name The name of the event
+  * @param date The date of the event
+  * @param place The location where the event takes place
+  * @param attendees People that are present on the event
+  * @throws "invalid name entry" error if the name input is incorrect
+  * @throws "invalid date entry" error if the date input is incorrect
+  * @throws "invalid place entry" error if the place input is incorrect
+  * @throws "invalid attendees entry" error if the attendees input is incorrect
+  * @returns true if there are no input errors
+  * @returns false if input errors are present
+  */
+  
+function validate (name, date, place, attendees){
+	if  (name.length > 3 && name.length < 20){
+	    if (date.length === 10){
+	        if (place.length > 3 && place.length < 10){
+	            if (attendees.length > 3 && attendees.length < 50){
+	            return true;
+	            } else { throw "invalid attendees entry"; return false;}
+	         } else { throw "invalid place entry"; return false;}
+	     } else { throw "invald date entry"; return false;}
+     } else { throw "invalid name entry"; return false;}
 };
+
+/**
+ * @param meeting is a new object created with the Event constructor
+ * @param teambuilding is a new object created with the Event constructor
+*/
+
+var meeting = new Event ("sprint", "01-09-2016", "Kiev", "Alexandr, Dmitry, Olga");
+var teambuilding = new Event ("teambuilding", "02-09-2016", "Kiev", "Alexandr, Dmitry, Olga");
+ console.log (meeting, teambuilding);
