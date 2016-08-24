@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Вычисление времени</title>
+
+</head>
+<body>
+    <h1>Мое путешествие</h1>
+    <form method="get">
+        <label for="startCity">Я иду из города:</label>
+        <input type="text" id="startCity" name="startCity" placeholder="введите город">
+
+        <label for="endCity">В город:</label>
+        <input type="text" id="endCity" name="endCity" placeholder="введите город">
+
+        <label for="totalDistance">Общее расстояние (км):</label>
+        <input type="text" id="totalDistance" name="totalDistance" placeholder="введите общее расстояние"><br><br>
+
+        <label for="nowCity">Сейчас я нахожусь в городе:</label>
+        <input type="text" id="nowCity" name="nowCity" placeholder="введите город">
+
+        <label for="traveledDistance">Я уже прошел/прошла (км):</label>
+        <input type="text" id="traveledDistance" name="traveledDistance" placeholder="ввседите пройденное расстояние"><br><br>
+
+        <label for="possibleDistance">В день могу пройти (км):</label>
+        <input type="text" id="possibleDistance" name="possibleDistance" placeholder="плановое расстояние"><span>км</span> <br><br>
+
+        <input type="submit" value="Рассчитать оставшееся время пути" onclick="(showTime(
+                /* document.querySelector('#traveledDistance input'),
+                   document.querySelector('#totalDistance input'),
+                   document.querySelector('#possibleDistance input')*/
+        ))">
+    </form>
+    <script type="text/javascript">
+        function showTime ( trD, toD, poD) {
+            trD = document.getElementById('traveledDistance');
+            toD = document.getElementById('totalDistance ');
+            poD = document.getElementById('possibleDistance');
+            var timeLeft = (toD - trD) / poD;
+            var daysLeft = Math.floor(timeLeft);
+            var hoursLeft = Math.floor((timeLeft - daysLeft) * 24);
+            var minutesLeft = Math.floor((((timeLeft - daysLeft) * 24) - hoursLeft) * 60);
+
+            return alert("Left to go " + (daysLeft) + " day(s) " + (hoursLeft) + " hour(s) " + (minutesLeft) + " minute(s)!");
+        }
+    </script>
+
+
+</body>
