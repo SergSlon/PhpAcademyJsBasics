@@ -268,12 +268,10 @@ function getSpeed (){
 */
 
 function timeCounter() {
-	var completedPath = getCompletedPath();
-	var totalPath = getTotalPath();
-	var speed = getSpeed();
-	 
-	var time = new Object;
-	
+    var completedPath = getCompletedPath();
+    var totalPath = getTotalPath();
+    var speed = getSpeed();
+    var time = new Object;
     if (completedPath > totalPath || totalPath == 0) { 
         time.days = 0;
         time.hours = 0;
@@ -285,7 +283,7 @@ function timeCounter() {
 	    time.minutes = Math.floor((remainingTime - Math.floor(remainingTime)) * 60);
     }
     
-	document.getElementById("output").innerHTML = time.days + " days, " + time.hours + " hours, " + time.minutes + " minutes.";
+    document.getElementById("output").innerHTML = time.days + " days, " + time.hours + " hours, " + time.minutes + " minutes.";
 };
 
 
