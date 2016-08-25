@@ -1,6 +1,6 @@
 /**
  * This adds eventListener to the button. The button triggers timeCounter function when clicked
-*/
+ */
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("calculate").addEventListener('click', timeCounter);
 });
@@ -8,9 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
 /**
  * This function gets its value by comaring the inout result with departureCity and destinationCity
  * @returns totalPath: this is the number of kms to go
-*/
-
-function getTotalPath (){
+ */
+function getTotalPath() {
 	var dep = document.getElementById("departure_city");
 	var departureCity = dep.options[dep.selectedIndex].value;
 	var des = document.getElementById("destination_city");
@@ -240,9 +239,8 @@ function getTotalPath (){
 /**
  * This function gets the value from the input with id ="completed_path"
  * @returns completedPath: this is the number of kms that the driver has already gone
-*/
-
-function getCompletedPath(){
+ */
+function getCompletedPath() {
 	var completedPath = document.getElementById("completed_path").value; 
 	if(completedPath > 1000){
 	alert ("Please, enter a valid number of km");
@@ -253,9 +251,8 @@ function getCompletedPath(){
 /**
  * This function gets speed value from the input with id ="speed"
  * @returns speed that is the average speed of the driver 
-*/
-
-function getSpeed (){
+ */
+function getSpeed() {
     var s = document.getElementById("speed");
 	var speed = s.options[s.selectedIndex].value;
 	return speed;
@@ -265,8 +262,7 @@ function getSpeed (){
  * This function counts how many days, hours and minutes left to complete the path
  * @returns time: the object which has the properties with days, hours and minutes
  * values and prints these values into the div with id = "output"
-*/
-
+ */
 function timeCounter() {
 	var completedPath = getCompletedPath();
 	var totalPath = getTotalPath();
