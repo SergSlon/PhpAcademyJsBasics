@@ -17,8 +17,8 @@ var time = new Object;
     } else {
         var remainingTime = ((Math.abs(totalPath) - Math.abs(completedPath))/speed);
         time.days = Math.floor(remainingTime/24);
-	    time.hours = Math.floor(remainingTime - time.days * 24);
-	    time.minutes = Math.floor((remainingTime - Math.floor(remainingTime)) * 60);
+	time.hours = Math.floor(remainingTime - time.days * 24);
+	time.minutes = Math.floor((remainingTime - Math.floor(remainingTime)) * 60);
     }
 return time;
 };
@@ -34,8 +34,6 @@ function output(time) {
 };
 
 output(timeCounter(1600, 600, 7));
-	    
-	
 
 // Задание №2 
 /**
@@ -48,10 +46,10 @@ output(timeCounter(1600, 600, 7));
   
 function Event (name, date, place, attendees) {
     validate (name, date, place, attendees);
-	this.name = name;
-	this.date = new Date (date);
-	this.place = place;
-	this.attendees = attendees;
+    this.name = name;
+    this.date = new Date (date);
+    this.place = place;
+    this.attendees = attendees;
 };	
 
 /**
@@ -85,4 +83,4 @@ function validate (name, date, place, attendees){
 
 var meeting = new Event ("sprint", "01-09-2016", "Kiev", "Alexandr, Dmitry, Olga");
 var teambuilding = new Event ("teambuilding", "02-09-2016", "Kiev", "Alexandr, Dmitry, Olga");
- console.log (meeting, teambuilding);
+console.log (meeting, teambuilding);
