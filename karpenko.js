@@ -1,54 +1,50 @@
 // Задание №1
-
+"use strict"
 /**
  * This function counts how many days, hours and minutes left to complete the path.
  * @param totalPath is the total number of km that are left to the point of destination
  * @param completedPath is the number of km of completed path (how many km a person has already gone)
  * @param speed is a speed (km/h) of a person (either he walks or drives)
  * @returns time this is the object which has the properties with days, hours and minutes values
- */
+*/
  
 function timeCounter(totalPath, completedPath, speed) {
-"use strict"
 var time = new Object;
-
-if (completedPath > totalPath || totalPath == 0) { 
-    time.days = 0;
-    time.hours = 0;
-    time.minutes = 0;
-}
-  
-else {
-    var remainingTime = ((Math.abs(totalPath) - Math.abs(completedPath))/speed);
-    time.days = Math.floor(remainingTime/24);
-	time.hours = Math.floor(remainingTime - time.days * 24);
-	time.minutes = Math.floor(((remainingTime - Math.floor(remainingTime)) * 60));
-}
-    return time;
+    if (completedPath > totalPath || totalPath == 0) { 
+        time.days = 0;
+        time.hours = 0;
+        time.minutes = 0;
+    } else {
+        var remainingTime = ((Math.abs(totalPath) - Math.abs(completedPath))/speed);
+        time.days = Math.floor(remainingTime/24);
+	    time.hours = Math.floor(remainingTime - time.days * 24);
+	    time.minutes = Math.floor((remainingTime - Math.floor(remainingTime)) * 60);
+    }
+return time;
 };
 
 /**
  * This function prints into the console how many days, hours and minutes are left to complete the path.
  * @param time takes an object created with a constructor 
  * @returns {object} that has the properties of days, hours and minutes.
- */
+*/
  
 function output(time) {
     console.log ("There are " + time.days + " days, " + time.hours + " hours, " + time.minutes + " minutes left.");
-    };
+};
+
 output(timeCounter(1600, 600, 7));
 	    
 	
 
 // Задание №2 
-
 /**
   * @constructor
   * @param name The name of the event
   * @param date The date of the event
   * @param place The location where the event takes place
   * @param attendees People that are present on the event
-  */
+*/
   
 function Event (name, date, place, attendees) {
     validate (name, date, place, attendees);
@@ -70,18 +66,16 @@ function Event (name, date, place, attendees) {
   * @throws "invalid attendees entry" error if the attendees input is incorrect
   * @returns true if there are no input errors
   * @returns false if input errors are present
-  */
+*/
   
 function validate (name, date, place, attendees){
-	if  (name.length > 3 && name.length < 20){
-	    if (date.length === 10){
-	        if (place.length > 3 && place.length < 10){
-	            if (attendees.length > 3 && attendees.length < 50){
-	            return true;
-	            } else { throw "invalid attendees entry"; return false;}
-	         } else { throw "invalid place entry"; return false;}
-	     } else { throw "invald date entry"; return false;}
-     } else { throw "invalid name entry"; return false;}
+    var validName = (name.length > 3 && name.length < 20);
+    var validDate = (date.length === 10);
+    var validPlace = (place.length > 3 && place.length < 10);
+    var validAttendees = (attendees.length > 3 && attendees.length < 50);
+    if (!validName || !validDate || !validPlace || !validAttendees) {
+       throw new TypeError('invalid params');
+    }
 };
 
 /**
