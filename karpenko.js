@@ -17,8 +17,8 @@ var time = new Object;
     } else {
         var remainingTime = ((Math.abs(totalPath) - Math.abs(completedPath))/speed);
         time.days = Math.floor(remainingTime/24);
-	    time.hours = Math.floor(remainingTime - time.days * 24);
-	    time.minutes = Math.floor((remainingTime - Math.floor(remainingTime)) * 60);
+	time.hours = Math.floor(remainingTime - time.days * 24);
+	time.minutes = Math.floor((remainingTime - Math.floor(remainingTime)) * 60);
     }
 return time;
 };
@@ -34,8 +34,6 @@ function output(time) {
 };
 
 output(timeCounter(1600, 600, 7));
-	    
-	
 
 // Задание №2 
 /**
