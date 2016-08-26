@@ -6,6 +6,15 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("calculate").addEventListener('click', timeCounter);
 });
 
+document.addEventListener("change", function(){
+    document.getElementById("departure_city").style.backgroundColor="white";
+    document.getElementById("calculate").disabled=false;
+});
+
+document.addEventListener("change", function(){
+    document.getElementById("destination_city").style.backgroundColor="white";
+});
+
 /**
  * This function gets its value by comaring the inout result with departureCity and destinationCity
  * @returns totalPath: this is the number of kms to go
@@ -16,8 +25,6 @@ function getTotalPath() {
     var des = document.getElementById("destination_city");
     var destinationCity = des.options[des.selectedIndex].value;
     var totalPath;
-    document.getElementById("departure_city").style.backgroundColor="white";
-    document.getElementById("destination_city").style.backgroundColor="white";
     switch (departureCity) {
         case "Cherkasy":
             if (destinationCity === "Cherkasy") {
@@ -99,6 +106,7 @@ function getTotalPath() {
                 alert("You have not selected the destination city");
                 totalPath = 0;
                 document.getElementById("destination_city").style.backgroundColor="red";
+                document.getElementById("calculate").disabled=true;
                 break;
             }
         case "Kyiv":
@@ -181,12 +189,14 @@ function getTotalPath() {
             	document.getElementById("destination_city").style.backgroundColor="red";
                 alert("You have not selected the destination city");
                 totalPath = 0;
+                document.getElementById("calculate").disabled=true;
                 break;
             }
         default:
         	document.getElementById("departure_city").style.backgroundColor="red";
             alert("You have not selected the departure city");
             totalPath = 0;
+            document.getElementById("calculate").disabled=true;
             break;
     }
     return totalPath;
