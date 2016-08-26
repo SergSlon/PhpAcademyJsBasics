@@ -103,7 +103,6 @@ function getTotalPath() {
                 totalPath = 326.3;
                 break;
             } else {
-                alert("You have not selected the destination city");
                 totalPath = 0;
                 document.getElementById("destination_city").style.backgroundColor="red";
                 document.getElementById("calculate").disabled=true;
@@ -187,14 +186,12 @@ function getTotalPath() {
                 break;
             } else {
             	document.getElementById("destination_city").style.backgroundColor="red";
-                alert("You have not selected the destination city");
                 totalPath = 0;
                 document.getElementById("calculate").disabled=true;
                 break;
             }
         default:
         	document.getElementById("departure_city").style.backgroundColor="red";
-            alert("You have not selected the departure city");
             totalPath = 0;
             document.getElementById("calculate").disabled=true;
             break;
