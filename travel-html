@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>time of travel</title>
+    <link rel="stylesheet" href="travel.css">
+    <script src="travel.js"></script>
+</head>
+<body>
+<div class="form">
+    <h2> Count time of your travel</h2>
+    <label for="start-city">Start city</label>&nbsp
+    <input type="text" placeholder="Enter start city" id="start-city" class="cell"><br>
+    <label for="end-city">End city</label>&nbsp
+    <input type="text" placeholder="Enter end city" id="end-city" class="cell"><br>
+    <label for="all-your-way">All your way</label>&nbsp
+    <input type="text" placeholder="Enter all your way, km" id="all-your-way" class="cell"><br>
+    <label for="travelled-way">Way you've travelled already</label>&nbsp
+    <input type="text" placeholder="Enter way you've travelled already, km" id="travelled-way" class="cell"><br>
+    <label for="way-per-hour">Way per hour</label>&nbsp
+    <input type="text" placeholder="Enter way per hour, km" id="way-per-hour" class="cell"><br>
+    <input type="submit" value="Count time of travel" class="cell" onclick="travelTime()"><br>
+    <label for="result">Result</label>&nbsp
+    <input type="text" id="result" class="cell"><br>
+</div>
+</div>
+</body>
+</html>
