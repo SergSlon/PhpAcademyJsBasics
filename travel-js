@@ -1,0 +1,39 @@
+function travelTime() {
+    var allIncorectElement = document.querySelectorAll(".incorect");
+    if (allIncorectElement.length > 0) {
+        allIncorectElement.forEach(function (element) {
+            element.classList.remove("incorect");
+        })
+    }
+    var startcity = document.getElementById("start-city");
+    var endcity = document.getElementById("end-city");
+    var allway = document.getElementById("all-your-way");
+    var currentway = document.getElementById("travelled-way");
+    var wayinday = document.getElementById("way-per-hour");
+    if (allway.value < 0 || isNaN(allway.value) == true) {
+        addStyle(allway);
+    }
+    if (currentway.value < 0 || isNaN(currentway.value) == true) {
+        addStyle(currentway);
+    }
+    if (wayinday.value < 0 || isNaN(wayinday.value) == true) {
+        addStyle(wayinday);
+    }
+    if (document.querySelectorAll(".incorect").length > 0) {
+        return;
+    }
+    var travel = (allway.value - currentway.value) / wayinday.value; // raw days
+    var days = parseInt(travel);  // days
+    var restdays = travel - days;
+    var hours = restdays * 24;  //hours
+    var resthours = parseInt(hours);
+    var minutes = (hours - resthours) * 60;  //minutes
+    var curentMinutes = parseInt(minutes);
+    document.getElementById("result").value = "Your travel from " + startcity.value +
+        " to " + endcity.value + " will take  " + days + " days  " + resthours +
+        " hours  and  " + curentMinutes + " minutes";
+}
+
+function addStyle(elem) {
+    elem.classList.add("incorect");
+};
