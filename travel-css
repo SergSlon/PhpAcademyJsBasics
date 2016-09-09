@@ -1,0 +1,15 @@
+body {font-family: Calibri;}
+.cell {
+    margin-bottom: 10px;
+    width: 245px;
+}
+
+.incorect {
+    border: 2px solid red;
+    /*margin-bottom: 10px;*/
+}
+
+#result {
+    width: 420px;
+}
+
