@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Вычисление времени</title>
+    <style>
+        body {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        form input {
+            margin: 2px 0;
+        }
+        legend{
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Moe путешествие</h1>
+    <form>
+        <fieldset>
+            <legend>Введите данные для расчета...</legend>
+            <label for="startCity">Я иду из города:</label>
+            <input type="text" id="startCity" name="startCity" placeholder="введите город"><br>
+
+            <label for="endCity">В город:</label>
+            <input type="text" id="endCity" name="endCity" placeholder="введите город"><br>
+
+            <label for="totalDistance">Общее расстояние (км):</label>
+            <input type="text" id="totalDistance" name="totalDistance" placeholder="введите общее расстояние"><br><br>
+
+            <label for="nowCity">Сейчас я нахожусь в городе:</label>
+            <input type="text" id="nowCity" name="nowCity" placeholder="введите город"><br>
+
+            <label for="completedDistance">Я уже прошел/прошла (км):</label>
+            <input type="text" id="completedDistance" name="completedDistance" placeholder="ввседите пройденное расстояние"><br><br>
+
+            <label for="possibleDistance">В день могу пройти (км):</label>
+            <input type="text" id="possibleDistance" name="possibleDistance" placeholder="плановое расстояние"><span>км</span> <br><br>
+
+            <input type="submit" id="sub" value="Рассчитать оставшееся время пути">
+        </fieldset>
+    </form>
+    <fieldset>
+        <legend>Полученный результат:</legend>
+        <ul id="list">
+
+        </ul>
+    </fieldset>
+    <script type="text/javascript">
+
+       var showTime = function showTime() {
+
+           var completedDistance = parseFloat(document.getElementById('completedDistance').value);
+           var totalDistance = parseFloat(document.getElementById('totalDistance').value);
+           var possibleDistance = parseFloat(document.getElementById('possibleDistance').value);
+           var startCity = parseFloat(document.getElementById('startCity').value);
+           var endCity = parseFloat(document.getElementById('endCity').value);
+           var nowCity = parseFloat(document.getElementById('nowCity').value);
+           var list = document.getElementById('list');
+           var item = document.createElement('li');
+
+           var validate = function () {
+               if (completedDistance > totalDistance || totalDistance <=0 || possibleDistance <=0)
+                   list.innerHTML = "Distance error!";
+               //при конвертировании пустого значения в число получаем NaN
+               //parseInt/parseFloat ('') или ('не число')
+               //TODO
+           };
+           validate();
+
+           var timeLeft = (totalDistance - completedDistance) / possibleDistance;
+           var daysLeft = Math.floor(timeLeft);
+           var hoursLeft = Math.floor((timeLeft - daysLeft) * 24);
+           var minutesLeft = Math.floor((((timeLeft - daysLeft) * 24) - hoursLeft) * 60);
+
+           item.innerHTML = "Вы путешествуете из города " + startCity + " в город " + endCity + ". Сейчас Вы уже дошли до города " + nowCity +"! Осталось пройти " + (daysLeft) + " дней " + (hoursLeft) + " часов " + (minutesLeft) + " минут!";
+           if (list.firstChild != null) {
+               list.insertBefore(item, list.firstChild);
+           }
+
+       };
+
+       var submitBtn = document.getElementById('sub');
+
+       submitBtn.addEventListener('click', showTime);
+
+/*       var arr = [];
+       //for (i = 0; i < 5; i++)
+      // arr[i]= 2;
+       arr.push( "Осталось пройти " + (daysLeft) + " дней " + (hoursLeft) + " часов " + (minutesLeft) + " минут!");
+       for (i = 0; i < arr.length; i++)
+           document.write(arr);*/
+    </script>
+
+</body>
